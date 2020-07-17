@@ -6,6 +6,8 @@ main() {
 
   int n2 = numeroAleatorio();
   print(n2);
+
+  imprimirData();
 }
 
 int numeroAleatorio([int maximo = 11]) {
