@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Dart",
-            "program": "controle/desafio_for.dart",
+            "program": "application/application.dart",
             "request": "launch",
             "type": "dart"
         }
