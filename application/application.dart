@@ -5,25 +5,40 @@ import '../oo/car.dart';
 main() {
   Car c1 = new Car(320);
 
-  stdout.write("Type 'y' to accelerate or 'n' to break (y/n): ");
-  String answer = stdin.readLineSync();
-  String speedometer = '=';
-  while (!c1.speedLimit() ^ (c1.currentSpeed < 0)) {
-    if (answer == 'y') {
-      c1.speedUp();
-      print('current speed: ${c1.currentSpeed} mph \n$speedometer');
-      speedometer += '=';
-    } else {
-      c1.speedBreak();
-      print('current speed: ${c1.currentSpeed} mph \n$speedometer');
-    }
-    stdout.write("want to keep accelerating? (y/n): ");
-    answer = stdin.readLineSync();
-  }
+  print("==================");
+  print("choose an action: ");
+  print("(1) speedUp");
+  print("(2) speedBreak");
+  print("(3) stop the car");
+  print("==================");
+  stdout.write("type here: ");
+  int answer = int.parse(stdin.readLineSync());
+  switch (answer) {
+    case 1:
+      print("==================");
+      for (var i = c1.currentSpeed; i < c1.maximumSpeed; i = c1.speedUp()) {
+        print('current speed: ${c1.currentSpeed}');
+      }
+      print('current speed: ${c1.currentSpeed}');
+      print('you reached maximum speed: ${c1.maximumSpeed} mph');
+      if (c1.speedLimit()) {
+        stdout.write('The car stopped!');
+      }
 
-  if (c1.currentSpeed == c1.maximumSpeed) {
-    print('You reached maximum speed! \nThe car is stopped!');
-  } else {
-    print('You stopped the car!');
+      break;
+    case 2:
+      c1.currentSpeed = c1.maximumSpeed;
+      print(c1.currentSpeed);
+      while (c1.currentSpeed > 0) {
+        print(c1.speedBreak());
+      }
+      print('you reached minimum speed: ${c1.currentSpeed} mph');
+      if (c1.currentSpeed == 0) {
+        stdout.write('The car stopped!');
+      }
+      break;
+    case 3:
+      stdout.write('The car stopped!');
+      break;
   }
 }
